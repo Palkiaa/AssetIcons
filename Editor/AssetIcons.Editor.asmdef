@@ -1,0 +1,18 @@
+{
+    "name": "AssetIcons.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:797a7b7a21d7509408d61f44ceb080f9"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
