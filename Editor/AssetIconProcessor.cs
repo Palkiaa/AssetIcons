@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 using UnityEditor;
 
@@ -24,19 +25,7 @@ namespace Editor
             var scripts = MonoImporter.GetAllRuntimeMonoScripts();
             foreach (var script in scripts)
             {
-                var type = script.GetClass();
-                if (type == null)
-                {
-                    continue;
-                }
-
-                var attributes = type.GetCustomAttributes(typeof(AssetIconAttribute), true);
-                if (!attributes.Any())
-                {
-                    continue;
-                }
-
-                var assetIcon = GetAssetIconAttribute(script);
+                var assetIcon = GetAssetIconAttribute(script, out var type);
                 if (assetIcon == null)
                 {
                     continue;
@@ -49,15 +38,15 @@ namespace Editor
             }
         }
 
-        public static AssetIconAttribute GetAssetIconAttribute(MonoScript script)
+        public static AssetIconAttribute GetAssetIconAttribute(MonoScript script, out Type type)
         {
-            var type = script.GetClass();
+            type = script.GetClass();
             if (type == null)
             {
                 return null;
             }
 
-            var attributes = type.GetCustomAttributes(typeof(AssetIconAttribute), true);
+            var attributes = type.GetCustomAttributesIncludingBaseInterfaces<AssetIconAttribute>();
             if (!attributes.Any())
             {
                 return null;
