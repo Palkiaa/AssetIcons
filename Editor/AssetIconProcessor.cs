@@ -5,7 +5,7 @@ using UnityEditor;
 
 using UnityEngine;
 
-namespace Editor
+namespace AssetIcons.Editor
 {
     [InitializeOnLoad]
     public class AssetIconProcessor
@@ -61,6 +61,8 @@ namespace Editor
             {
                 var path = AssetDatabase.GetAssetPath(script.GetInstanceID());
                 var monoImporter = AssetImporter.GetAtPath(path) as MonoImporter;
+                //This is can be prone to misspellings/not being found, throwing a console exception you can't capture in a try/catch
+                //Perhaps it's better to search directly for the image using asset bundles
                 var iconContent = EditorGUIUtility.IconContent(assetIcon.UnityIcon);
                 if (iconContent != null)
                 {

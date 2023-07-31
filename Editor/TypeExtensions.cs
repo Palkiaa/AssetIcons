@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Editor
+namespace AssetIcons.Editor
 {
     public static class TypeExtensions
     {
